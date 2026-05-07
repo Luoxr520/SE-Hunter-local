@@ -1,0 +1,45 @@
+{
+  "version": "3.3.10",
+  "flags": {
+    "desk": true
+  },
+  "shapes": [
+    {
+      "kie_linking": [],
+      "label": "bed",
+      "score": 0.7668148875236511,
+      "points": [
+        [
+          16.546112060546875,
+          12.454864501953125
+        ],
+        [
+          635.211669921875,
+          12.454864501953125
+        ],
+        [
+          635.211669921875,
+          447.4658203125
+        ],
+        [
+          16.546112060546875,
+          447.4658203125
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {}
+    }
+  ],
+  "imagePath": "000000000133.jpg",
+  "imageData": null,
+  "imageHeight": 480,
+  "imageWidth": 640,
+  "description": "",
+  "vqaData": {
+    "1": ""
+  }
+}

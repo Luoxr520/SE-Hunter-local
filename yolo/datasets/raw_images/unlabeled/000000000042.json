@@ -1,0 +1,40 @@
+{
+  "version": "4.0.0-beta.5",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "dog",
+      "score": 0.5609400272369385,
+      "points": [
+        [
+          221.48818969726562,
+          41.73699188232422
+        ],
+        [
+          566.8080444335938,
+          41.73699188232422
+        ],
+        [
+          566.8080444335938,
+          291.5526428222656
+        ],
+        [
+          221.48818969726562,
+          291.5526428222656
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    }
+  ],
+  "imagePath": "000000000042.jpg",
+  "imageData": null,
+  "imageHeight": 478,
+  "imageWidth": 640,
+  "description": ""
+}

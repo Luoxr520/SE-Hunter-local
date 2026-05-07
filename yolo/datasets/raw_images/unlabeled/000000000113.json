@@ -1,0 +1,99 @@
+{
+  "version": "4.0.0-beta.5",
+  "flags": {},
+  "checked": false,
+  "shapes": [
+    {
+      "label": "man",
+      "score": 0.4461824297904968,
+      "points": [
+        [
+          6.2792510986328125,
+          34.92755126953125
+        ],
+        [
+          156.12217712402344,
+          34.92755126953125
+        ],
+        [
+          156.12217712402344,
+          481.624267578125
+        ],
+        [
+          6.2792510986328125,
+          481.624267578125
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "man",
+      "score": 0.2836172580718994,
+      "points": [
+        [
+          149.76498413085938,
+          58.9266357421875
+        ],
+        [
+          337.87591552734375,
+          58.9266357421875
+        ],
+        [
+          337.87591552734375,
+          409.8785400390625
+        ],
+        [
+          149.76498413085938,
+          409.8785400390625
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "man",
+      "score": 0.2777290642261505,
+      "points": [
+        [
+          344.51702880859375,
+          38.9473876953125
+        ],
+        [
+          415.99237060546875,
+          38.9473876953125
+        ],
+        [
+          415.99237060546875,
+          436.3997802734375
+        ],
+        [
+          344.51702880859375,
+          436.3997802734375
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    }
+  ],
+  "imagePath": "000000000113.jpg",
+  "imageData": null,
+  "imageHeight": 640,
+  "imageWidth": 416,
+  "description": ""
+}

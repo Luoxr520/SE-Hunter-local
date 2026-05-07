@@ -1,0 +1,388 @@
+{
+  "version": "4.0.0-beta.5",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "cup",
+      "score": 0.9526248574256897,
+      "points": [
+        [
+          382.55517578125,
+          222.1300048828125
+        ],
+        [
+          566.4697265625,
+          222.1300048828125
+        ],
+        [
+          566.4697265625,
+          344.9874267578125
+        ],
+        [
+          382.55517578125,
+          344.9874267578125
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "cake",
+      "score": 0.8189884424209595,
+      "points": [
+        [
+          180.16921997070312,
+          267.8429870605469
+        ],
+        [
+          307.66107177734375,
+          267.8429870605469
+        ],
+        [
+          307.66107177734375,
+          403.6972351074219
+        ],
+        [
+          180.16921997070312,
+          403.6972351074219
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "spoon",
+      "score": 0.7843504548072815,
+      "points": [
+        [
+          347.530517578125,
+          274.6239929199219
+        ],
+        [
+          429.5868225097656,
+          274.6239929199219
+        ],
+        [
+          429.5868225097656,
+          359.7216796875
+        ],
+        [
+          347.530517578125,
+          359.7216796875
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "umbrella",
+      "score": 0.6992579698562622,
+      "points": [
+        [
+          131.4501190185547,
+          0.794647216796875
+        ],
+        [
+          163.5132598876953,
+          0.794647216796875
+        ],
+        [
+          163.5132598876953,
+          77.0228271484375
+        ],
+        [
+          131.4501190185547,
+          77.0228271484375
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "dining table",
+      "score": 0.5969655513763428,
+      "points": [
+        [
+          105.40646362304688,
+          158.5625
+        ],
+        [
+          635.7364501953125,
+          158.5625
+        ],
+        [
+          635.7364501953125,
+          481.0
+        ],
+        [
+          105.40646362304688,
+          481.0
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "bench",
+      "score": 0.4369359612464905,
+      "points": [
+        [
+          106.15614318847656,
+          106.29460144042969
+        ],
+        [
+          167.68971252441406,
+          106.29460144042969
+        ],
+        [
+          167.68971252441406,
+          149.41270446777344
+        ],
+        [
+          106.15614318847656,
+          149.41270446777344
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "umbrella",
+      "score": 0.406602144241333,
+      "points": [
+        [
+          293.8876953125,
+          0.14051055908203125
+        ],
+        [
+          399.62615966796875,
+          0.14051055908203125
+        ],
+        [
+          399.62615966796875,
+          40.179725646972656
+        ],
+        [
+          293.8876953125,
+          40.179725646972656
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "book",
+      "score": 0.4013479948043823,
+      "points": [
+        [
+          257.8400573730469,
+          192.94235229492188
+        ],
+        [
+          384.0939636230469,
+          192.94235229492188
+        ],
+        [
+          384.0939636230469,
+          271.216796875
+        ],
+        [
+          257.8400573730469,
+          271.216796875
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "dining table",
+      "score": 0.37395352125167847,
+      "points": [
+        [
+          92.390380859375,
+          208.67440795898438
+        ],
+        [
+          637.0938110351562,
+          208.67440795898438
+        ],
+        [
+          637.0938110351562,
+          476.9102783203125
+        ],
+        [
+          92.390380859375,
+          476.9102783203125
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "umbrella",
+      "score": 0.37379586696624756,
+      "points": [
+        [
+          293.79559326171875,
+          0.7280960083007812
+        ],
+        [
+          399.63519287109375,
+          0.7280960083007812
+        ],
+        [
+          399.63519287109375,
+          104.41299438476562
+        ],
+        [
+          293.79559326171875,
+          104.41299438476562
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "umbrella",
+      "score": 0.29659974575042725,
+      "points": [
+        [
+          104.64421844482422,
+          0.6605453491210938
+        ],
+        [
+          134.58663940429688,
+          0.6605453491210938
+        ],
+        [
+          134.58663940429688,
+          89.14079284667969
+        ],
+        [
+          104.64421844482422,
+          89.14079284667969
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "potted plant",
+      "score": 0.27195239067077637,
+      "points": [
+        [
+          222.64016723632812,
+          55.914764404296875
+        ],
+        [
+          267.8807373046875,
+          55.914764404296875
+        ],
+        [
+          267.8807373046875,
+          120.06864929199219
+        ],
+        [
+          222.64016723632812,
+          120.06864929199219
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "bench",
+      "score": 0.25959664583206177,
+      "points": [
+        [
+          0.2538032531738281,
+          147.04103088378906
+        ],
+        [
+          49.98237991333008,
+          147.04103088378906
+        ],
+        [
+          49.98237991333008,
+          220.98397827148438
+        ],
+        [
+          0.2538032531738281,
+          220.98397827148438
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    }
+  ],
+  "imagePath": "000000000127.jpg",
+  "imageData": null,
+  "imageHeight": 481,
+  "imageWidth": 640,
+  "description": ""
+}

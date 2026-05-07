@@ -1,0 +1,40 @@
+{
+  "version": "4.0.0-beta.5",
+  "flags": {},
+  "checked": false,
+  "shapes": [
+    {
+      "label": "西兰花",
+      "score": null,
+      "points": [
+        [
+          261.87817258883246,
+          227.9864636209813
+        ],
+        [
+          569.0,
+          227.9864636209813
+        ],
+        [
+          569.0,
+          479.0
+        ],
+        [
+          261.87817258883246,
+          479.0
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    }
+  ],
+  "imagePath": "000000000009.jpg",
+  "imageData": null,
+  "imageHeight": 480,
+  "imageWidth": 640
+}

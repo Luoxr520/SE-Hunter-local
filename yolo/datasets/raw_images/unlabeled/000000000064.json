@@ -1,0 +1,241 @@
+{
+  "version": "4.0.0-beta.5",
+  "flags": {},
+  "checked": false,
+  "shapes": [
+    {
+      "label": "clock",
+      "score": 0.8888363242149353,
+      "points": [
+        [
+          112.31617736816406,
+          45.520233154296875
+        ],
+        [
+          262.1099548339844,
+          45.520233154296875
+        ],
+        [
+          262.1099548339844,
+          195.65890502929688
+        ],
+        [
+          112.31617736816406,
+          195.65890502929688
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "car",
+      "score": 0.8706374764442444,
+      "points": [
+        [
+          51.400634765625,
+          390.8890686035156
+        ],
+        [
+          228.13876342773438,
+          390.8890686035156
+        ],
+        [
+          228.13876342773438,
+          545.5068969726562
+        ],
+        [
+          51.400634765625,
+          545.5068969726562
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "stop sign",
+      "score": 0.775392472743988,
+      "points": [
+        [
+          115.03749084472656,
+          227.1839599609375
+        ],
+        [
+          153.21714782714844,
+          227.1839599609375
+        ],
+        [
+          153.21714782714844,
+          305.1298522949219
+        ],
+        [
+          115.03749084472656,
+          305.1298522949219
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "truck",
+      "score": 0.5203139781951904,
+      "points": [
+        [
+          51.69725036621094,
+          354.4860534667969
+        ],
+        [
+          177.01705932617188,
+          354.4860534667969
+        ],
+        [
+          177.01705932617188,
+          410.6898193359375
+        ],
+        [
+          51.69725036621094,
+          410.6898193359375
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "chatbot_review": {
+        "source": "chatbot_review",
+        "status": "unconfirmed",
+        "action": "wrong_class",
+        "suggested_label": "stop_sign",
+        "reason": "该区域为交通标志，但非停车标志",
+        "candidate_index": 1
+      },
+      "label": "AI_REVIEW_wrong_class_stop_sign",
+      "score": 0.9,
+      "points": [
+        [
+          409.9324324324324,
+          331.5315315315314
+        ],
+        [
+          437.40990990990986,
+          331.5315315315314
+        ],
+        [
+          437.40990990990986,
+          372.97297297297297
+        ],
+        [
+          409.9324324324324,
+          372.97297297297297
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "difficult": true,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "chatbot_review": {
+        "source": "chatbot_review",
+        "status": "unconfirmed",
+        "action": "false_positive",
+        "suggested_label": "AI_REVIEW_wrong_class_traffic_sign",
+        "reason": "重复且错误的标注",
+        "candidate_index": 2
+      },
+      "label": "AI_REVIEW_false_positive_AI_REVIEW_wrong_class_traffic_sign",
+      "score": 0.9,
+      "points": [
+        [
+          225.3603603603604,
+          266.8396396396396
+        ],
+        [
+          263.5603603603604,
+          266.8396396396396
+        ],
+        [
+          263.5603603603604,
+          344.7396396396396
+        ],
+        [
+          225.3603603603604,
+          344.7396396396396
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "difficult": true,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    }
+  ],
+  "imagePath": "000000000064.jpg",
+  "imageData": null,
+  "imageHeight": 640,
+  "imageWidth": 480,
+  "description": "",
+  "chat_history": [
+    {
+      "role": "user",
+      "content": "<image>这张照片中还有什么元素",
+      "image": "D:\\code\\yolo\\datasets\\raw_images\\unlabeled\\000000000064.jpg"
+    },
+    {
+      "role": "assistant",
+      "content": "### 图片独立判断\n\n这张照片展示了一个街景，主要元素包括：\n\n1. **钟表**：位于图片中央，安装在一根黑色立柱上，钟面上有“ROLEX”字样。\n2. **树木**：钟表右侧有一棵大树，树干粗壮。\n3. **车辆**：背景中可以看到一辆银色轿车和一辆白色货车。\n4. **建筑物**：背景中有建筑物，建筑风格较为现代，窗户较大。\n5. **交通标志**：钟表左侧有一个交通标志，但具体内容不清晰。\n6. **道路和人行道**：地面为柏油路面，旁边有人行道。\n\n### 当前标注结果\n\n- **clock**：位置为 (112.3, 45.5, 262.1, 195.7)，置信度为 0.8888363242149353。\n- **car**：位置为 (51.4, 390.9, 228.1, 545.5)，置信度为 0.8706374764442444。\n- **stop sign**：位置为 (115.0, 227.2, 153.2, 305.1)，置信度为 0.775392472743988。\n- **truck**：位置为 (51.7, 354.5, 177.0, 410.7)，置信度为 0.5203139781951904。\n- **AI_REVIEW_wrong_class_traffic_sign**：位置为 (115.0, 227.2, 153.2, 305.1)，置信度为 0.9，标记为困难目标。\n\n### 差异分析\n\n1. **clock**：标注准确，位置和类别均无误。\n2. **car**：标注准确，位置和类别均无误。\n3. **stop sign**：标注存在问题。该区域实际上是一个交通标志，但不是停车标志（stop sign），因此类别错误。\n4. **truck**：标注准确，位置和类别均无误。\n5. **AI_REVIEW_wrong_class_traffic_sign**：这是一个重复框，且类别错误（已标注为错误类别）。\n\n### 人工微调建议\n\n- **stop sign**：应删除此标注，因为该区域并非停车标志。\n- **AI_REVIEW_wrong_class_traffic_sign**：应删除此重复且错误的标注。\n\n### JSON 输出\n\n根据上述分析，提出以下调整建议：",
+      "image": null
+    }
+  ],
+  "chatbot_review_note": "Chatbot refreshed temporary AI_REVIEW candidates. Added: 2; removed old: 1. They are not confirmed labels and require manual verification.",
+  "chatbot_review_candidates": [
+    {
+      "action": "wrong_class",
+      "label": "stop sign",
+      "bbox": [
+        115.0,
+        227.2,
+        153.2,
+        305.1
+      ],
+      "confidence": 0.9,
+      "reason": "该区域为交通标志，但非停车标志"
+    },
+    {
+      "action": "false_positive",
+      "label": "AI_REVIEW_wrong_class_traffic_sign",
+      "bbox": [
+        115.0,
+        227.2,
+        153.2,
+        305.1
+      ],
+      "confidence": 0.9,
+      "reason": "重复且错误的标注"
+    }
+  ]
+}

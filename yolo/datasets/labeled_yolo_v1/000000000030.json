@@ -1,0 +1,45 @@
+{
+  "version": "3.3.10",
+  "flags": {
+    "desk": false
+  },
+  "shapes": [
+    {
+      "label": "vase",
+      "score": 0.9624630808830261,
+      "points": [
+        [
+          240.3966064453125,
+          155.85919189453125
+        ],
+        [
+          407.1428527832031,
+          155.85919189453125
+        ],
+        [
+          407.1428527832031,
+          351.46942138671875
+        ],
+        [
+          240.3966064453125,
+          351.46942138671875
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    }
+  ],
+  "imagePath": "000000000030.jpg",
+  "imageData": null,
+  "imageHeight": 428,
+  "imageWidth": 640,
+  "description": "",
+  "vqaData": {
+    "1": null
+  }
+}

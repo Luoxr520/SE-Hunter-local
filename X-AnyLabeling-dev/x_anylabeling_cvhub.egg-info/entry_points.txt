@@ -1,0 +1,2 @@
+[console_scripts]
+xanylabeling = anylabeling.app:main

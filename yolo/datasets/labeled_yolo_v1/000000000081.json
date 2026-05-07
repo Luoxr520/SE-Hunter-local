@@ -1,0 +1,45 @@
+{
+  "version": "3.3.10",
+  "flags": {
+    "desk": false
+  },
+  "shapes": [
+    {
+      "label": "airplane",
+      "score": 0.9716489911079407,
+      "points": [
+        [
+          33.629974365234375,
+          30.12347412109375
+        ],
+        [
+          624.5073852539062,
+          30.12347412109375
+        ],
+        [
+          624.5073852539062,
+          354.51348876953125
+        ],
+        [
+          33.629974365234375,
+          354.51348876953125
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    }
+  ],
+  "imagePath": "000000000081.jpg",
+  "imageData": null,
+  "imageHeight": 425,
+  "imageWidth": 640,
+  "description": "",
+  "vqaData": {
+    "1": null
+  }
+}

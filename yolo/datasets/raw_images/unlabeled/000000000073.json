@@ -1,0 +1,99 @@
+{
+  "version": "4.0.0-beta.5",
+  "flags": {},
+  "checked": false,
+  "shapes": [
+    {
+      "label": "motorcycle",
+      "score": 0.9539873003959656,
+      "points": [
+        [
+          8.205078125,
+          17.681182861328125
+        ],
+        [
+          557.829833984375,
+          17.681182861328125
+        ],
+        [
+          557.829833984375,
+          636.385498046875
+        ],
+        [
+          8.205078125,
+          636.385498046875
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "motorcycle",
+      "score": 0.6731905937194824,
+      "points": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          236.29376220703125,
+          0.0
+        ],
+        [
+          236.29376220703125,
+          279.1624755859375
+        ],
+        [
+          0.0,
+          279.1624755859375
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "person",
+      "score": 0.3291071653366089,
+      "points": [
+        [
+          77.76834106445312,
+          0.17312240600585938
+        ],
+        [
+          111.87139892578125,
+          0.17312240600585938
+        ],
+        [
+          111.87139892578125,
+          24.344013214111328
+        ],
+        [
+          77.76834106445312,
+          24.344013214111328
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    }
+  ],
+  "imagePath": "000000000073.jpg",
+  "imageData": null,
+  "imageHeight": 640,
+  "imageWidth": 565,
+  "description": ""
+}

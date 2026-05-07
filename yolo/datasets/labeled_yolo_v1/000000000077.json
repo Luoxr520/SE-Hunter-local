@@ -1,0 +1,103 @@
+{
+  "version": "3.3.10",
+  "flags": {
+    "desk": false
+  },
+  "shapes": [
+    {
+      "label": "person",
+      "score": 0.9257379770278931,
+      "points": [
+        [
+          24.660831451416016,
+          166.68153381347656
+        ],
+        [
+          123.20020294189453,
+          166.68153381347656
+        ],
+        [
+          123.20020294189453,
+          341.3058776855469
+        ],
+        [
+          24.660831451416016,
+          341.3058776855469
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "person",
+      "score": 0.9235692024230957,
+      "points": [
+        [
+          215.92837524414062,
+          55.276920318603516
+        ],
+        [
+          319.6564025878906,
+          55.276920318603516
+        ],
+        [
+          319.6564025878906,
+          180.2034454345703
+        ],
+        [
+          215.92837524414062,
+          180.2034454345703
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "person",
+      "score": 0.910062849521637,
+      "points": [
+        [
+          319.6955871582031,
+          54.77574157714844
+        ],
+        [
+          420.9336242675781,
+          54.77574157714844
+        ],
+        [
+          420.9336242675781,
+          150.9213409423828
+        ],
+        [
+          319.6955871582031,
+          150.9213409423828
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    }
+  ],
+  "imagePath": "000000000077.jpg",
+  "imageData": null,
+  "imageHeight": 375,
+  "imageWidth": 500,
+  "description": "",
+  "vqaData": {
+    "1": null
+  }
+}

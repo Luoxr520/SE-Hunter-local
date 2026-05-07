@@ -1,0 +1,103 @@
+{
+  "version": "3.3.10",
+  "flags": {
+    "desk": false
+  },
+  "shapes": [
+    {
+      "label": "motorcycle",
+      "score": 0.9539936184883118,
+      "points": [
+        [
+          8.20550537109375,
+          17.646240234375
+        ],
+        [
+          557.8330688476562,
+          17.646240234375
+        ],
+        [
+          557.8330688476562,
+          636.3883056640625
+        ],
+        [
+          8.20550537109375,
+          636.3883056640625
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "motorcycle",
+      "score": 0.6727905869483948,
+      "points": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          236.28244018554688,
+          0.0
+        ],
+        [
+          236.28244018554688,
+          279.19525146484375
+        ],
+        [
+          0.0,
+          279.19525146484375
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "person",
+      "score": 0.32871752977371216,
+      "points": [
+        [
+          77.77381896972656,
+          0.17357540130615234
+        ],
+        [
+          111.87353515625,
+          0.17357540130615234
+        ],
+        [
+          111.87353515625,
+          24.343528747558594
+        ],
+        [
+          77.77381896972656,
+          24.343528747558594
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    }
+  ],
+  "imagePath": "..\\raw_images\\unlabeled\\000000000073.jpg",
+  "imageData": null,
+  "imageHeight": 640,
+  "imageWidth": 565,
+  "description": "",
+  "vqaData": {
+    "1": null
+  }
+}

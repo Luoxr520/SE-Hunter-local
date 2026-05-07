@@ -1,0 +1,132 @@
+{
+  "version": "3.3.10",
+  "flags": {
+    "desk": false
+  },
+  "shapes": [
+    {
+      "label": "clock",
+      "score": 0.8885469436645508,
+      "points": [
+        [
+          112.31631469726562,
+          45.508033752441406
+        ],
+        [
+          262.10638427734375,
+          45.508033752441406
+        ],
+        [
+          262.10638427734375,
+          195.65643310546875
+        ],
+        [
+          112.31631469726562,
+          195.65643310546875
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "car",
+      "score": 0.8704560995101929,
+      "points": [
+        [
+          51.399871826171875,
+          390.9058837890625
+        ],
+        [
+          228.13980102539062,
+          390.9058837890625
+        ],
+        [
+          228.13980102539062,
+          545.5054931640625
+        ],
+        [
+          51.399871826171875,
+          545.5054931640625
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "stop sign",
+      "score": 0.7748394012451172,
+      "points": [
+        [
+          115.03892517089844,
+          227.18394470214844
+        ],
+        [
+          153.21612548828125,
+          227.18394470214844
+        ],
+        [
+          153.21612548828125,
+          305.12078857421875
+        ],
+        [
+          115.03892517089844,
+          305.12078857421875
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "truck",
+      "score": 0.5203408598899841,
+      "points": [
+        [
+          51.69721984863281,
+          354.4859313964844
+        ],
+        [
+          177.0181884765625,
+          354.4859313964844
+        ],
+        [
+          177.0181884765625,
+          410.6953125
+        ],
+        [
+          51.69721984863281,
+          410.6953125
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    }
+  ],
+  "imagePath": "000000000064.jpg",
+  "imageData": null,
+  "imageHeight": 640,
+  "imageWidth": 480,
+  "description": "",
+  "vqaData": {
+    "1": null
+  }
+}

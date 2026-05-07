@@ -1,0 +1,98 @@
+{
+  "version": "4.0.0-beta.5",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "fork",
+      "score": 0.9562331438064575,
+      "points": [
+        [
+          418.57257080078125,
+          115.208251953125
+        ],
+        [
+          585.1617431640625,
+          115.208251953125
+        ],
+        [
+          585.1617431640625,
+          423.3992919921875
+        ],
+        [
+          418.57257080078125,
+          423.3992919921875
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "cake",
+      "score": 0.942974328994751,
+      "points": [
+        [
+          133.56680297851562,
+          0.0
+        ],
+        [
+          490.30133056640625,
+          0.0
+        ],
+        [
+          490.30133056640625,
+          295.02587890625
+        ],
+        [
+          133.56680297851562,
+          295.02587890625
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "dining table",
+      "score": 0.7067750096321106,
+      "points": [
+        [
+          0.8327178955078125,
+          0.0
+        ],
+        [
+          636.642822265625,
+          0.0
+        ],
+        [
+          636.642822265625,
+          419.392822265625
+        ],
+        [
+          0.8327178955078125,
+          419.392822265625
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    }
+  ],
+  "imagePath": "000000000092.jpg",
+  "imageData": null,
+  "imageHeight": 427,
+  "imageWidth": 640,
+  "description": ""
+}

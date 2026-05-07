@@ -1,0 +1,335 @@
+{
+  "version": "3.3.10",
+  "flags": {
+    "desk": false
+  },
+  "shapes": [
+    {
+      "label": "refrigerator",
+      "score": 0.9609383344650269,
+      "points": [
+        [
+          9.185417175292969,
+          95.85549926757812
+        ],
+        [
+          156.70065307617188,
+          95.85549926757812
+        ],
+        [
+          156.70065307617188,
+          348.31060791015625
+        ],
+        [
+          9.185417175292969,
+          348.31060791015625
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "vase",
+      "score": 0.8350517153739929,
+      "points": [
+        [
+          218.5692596435547,
+          55.2510986328125
+        ],
+        [
+          250.7779541015625,
+          55.2510986328125
+        ],
+        [
+          250.7779541015625,
+          102.72549438476562
+        ],
+        [
+          218.5692596435547,
+          102.72549438476562
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "clock",
+      "score": 0.8084253668785095,
+      "points": [
+        [
+          318.5605163574219,
+          19.603897094726562
+        ],
+        [
+          383.7515869140625,
+          19.603897094726562
+        ],
+        [
+          383.7515869140625,
+          88.62762451171875
+        ],
+        [
+          318.5605163574219,
+          88.62762451171875
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "bowl",
+      "score": 0.7622547149658203,
+      "points": [
+        [
+          159.4493408203125,
+          184.2417449951172
+        ],
+        [
+          203.08494567871094,
+          184.2417449951172
+        ],
+        [
+          203.08494567871094,
+          202.4171600341797
+        ],
+        [
+          159.4493408203125,
+          202.4171600341797
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "oven",
+      "score": 0.7089471220970154,
+      "points": [
+        [
+          258.5331726074219,
+          167.65521240234375
+        ],
+        [
+          381.1680908203125,
+          167.65521240234375
+        ],
+        [
+          381.1680908203125,
+          343.1972351074219
+        ],
+        [
+          258.5331726074219,
+          343.1972351074219
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "vase",
+      "score": 0.6470576524734497,
+      "points": [
+        [
+          157.72869873046875,
+          42.158782958984375
+        ],
+        [
+          215.31710815429688,
+          42.158782958984375
+        ],
+        [
+          215.31710815429688,
+          103.01136779785156
+        ],
+        [
+          157.72869873046875,
+          103.01136779785156
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "potted plant",
+      "score": 0.6166858673095703,
+      "points": [
+        [
+          556.34375,
+          45.97416687011719
+        ],
+        [
+          606.9266357421875,
+          45.97416687011719
+        ],
+        [
+          606.9266357421875,
+          103.66546630859375
+        ],
+        [
+          556.34375,
+          103.66546630859375
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "vase",
+      "score": 0.391579270362854,
+      "points": [
+        [
+          431.32928466796875,
+          63.277244567871094
+        ],
+        [
+          448.582763671875,
+          63.277244567871094
+        ],
+        [
+          448.582763671875,
+          103.84561157226562
+        ],
+        [
+          431.32928466796875,
+          103.84561157226562
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "sink",
+      "score": 0.3815460205078125,
+      "points": [
+        [
+          489.8619689941406,
+          199.10317993164062
+        ],
+        [
+          626.54296875,
+          199.10317993164062
+        ],
+        [
+          626.54296875,
+          257.19219970703125
+        ],
+        [
+          489.8619689941406,
+          257.19219970703125
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "bottle",
+      "score": 0.3408008813858032,
+      "points": [
+        [
+          527.0862426757812,
+          56.25309753417969
+        ],
+        [
+          556.2608032226562,
+          56.25309753417969
+        ],
+        [
+          556.2608032226562,
+          104.036865234375
+        ],
+        [
+          527.0862426757812,
+          104.036865234375
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "oven",
+      "score": 0.289239764213562,
+      "points": [
+        [
+          258.89288330078125,
+          167.759521484375
+        ],
+        [
+          381.2392272949219,
+          167.759521484375
+        ],
+        [
+          381.2392272949219,
+          343.41015625
+        ],
+        [
+          258.89288330078125,
+          343.41015625
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    }
+  ],
+  "imagePath": "000000000138.jpg",
+  "imageData": null,
+  "imageHeight": 573,
+  "imageWidth": 640,
+  "description": "",
+  "vqaData": {
+    "1": null
+  }
+}

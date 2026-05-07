@@ -1,0 +1,292 @@
+{
+  "version": "4.0.0-beta.5",
+  "flags": {},
+  "checked": false,
+  "shapes": [
+    {
+      "label": "train",
+      "score": 0.9256119132041931,
+      "points": [
+        [
+          47.730255126953125,
+          183.08428955078125
+        ],
+        [
+          528.6649780273438,
+          183.08428955078125
+        ],
+        [
+          528.6649780273438,
+          302.60009765625
+        ],
+        [
+          47.730255126953125,
+          302.60009765625
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "car",
+      "score": 0.665382981300354,
+      "points": [
+        [
+          587.0075073242188,
+          231.3353271484375
+        ],
+        [
+          613.18896484375,
+          231.3353271484375
+        ],
+        [
+          613.18896484375,
+          245.44540405273438
+        ],
+        [
+          587.0075073242188,
+          245.44540405273438
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "car",
+      "score": 0.6285761594772339,
+      "points": [
+        [
+          617.2062377929688,
+          237.99960327148438
+        ],
+        [
+          639.6321411132812,
+          237.99960327148438
+        ],
+        [
+          639.6321411132812,
+          249.67437744140625
+        ],
+        [
+          617.2062377929688,
+          249.67437744140625
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "car",
+      "score": 0.5636540055274963,
+      "points": [
+        [
+          518.5786743164062,
+          221.2615966796875
+        ],
+        [
+          544.4666137695312,
+          221.2615966796875
+        ],
+        [
+          544.4666137695312,
+          233.50521850585938
+        ],
+        [
+          518.5786743164062,
+          233.50521850585938
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "label": "car",
+      "score": 0.25489091873168945,
+      "points": [
+        [
+          333.5334777832031,
+          193.16598510742188
+        ],
+        [
+          354.9151611328125,
+          193.16598510742188
+        ],
+        [
+          354.9151611328125,
+          203.69189453125
+        ],
+        [
+          333.5334777832031,
+          203.69189453125
+        ]
+      ],
+      "group_id": null,
+      "description": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "chatbot_review": {
+        "source": "chatbot_review",
+        "status": "unconfirmed",
+        "action": "missing",
+        "suggested_label": "car",
+        "reason": "停车场内未标注的车辆",
+        "candidate_index": 1
+      },
+      "label": "missing_car_2",
+      "score": 0.9,
+      "points": [
+        [
+          455.0,
+          215.0
+        ],
+        [
+          485.0,
+          215.0
+        ],
+        [
+          485.0,
+          230.0
+        ],
+        [
+          455.0,
+          230.0
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "difficult": true,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    },
+    {
+      "chatbot_review": {
+        "source": "chatbot_review",
+        "status": "unconfirmed",
+        "action": "missing",
+        "suggested_label": "car",
+        "reason": "停车场内未标注的车辆",
+        "candidate_index": 2
+      },
+      "label": "missing_car",
+      "score": 0.9,
+      "points": [
+        [
+          490.0,
+          210.0
+        ],
+        [
+          510.0,
+          210.0
+        ],
+        [
+          510.0,
+          225.0
+        ],
+        [
+          490.0,
+          225.0
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "difficult": true,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
+    }
+  ],
+  "imagePath": "000000000071.jpg",
+  "imageData": null,
+  "imageHeight": 426,
+  "imageWidth": 640,
+  "chat_history": [
+    {
+      "role": "user",
+      "content": "描述一下这个图片<image>",
+      "image": "D:\\code\\yolo\\datasets\\raw_images\\unlabeled\\000000000071.jpg"
+    },
+    {
+      "role": "assistant",
+      "content": "描述一下这个图片@image000000000071",
+      "image": null
+    },
+    {
+      "role": "user",
+      "content": "<image>这张图片中有什么元素",
+      "image": "D:\\code\\yolo\\datasets\\raw_images\\unlabeled\\000000000071.jpg"
+    },
+    {
+      "role": "assistant",
+      "content": "### 图片独立判断\n\n这张图片展示了一个铁路场景，具体元素如下：\n\n1. **火车**：图片中央有一列长的现代化列车，车身主要是白色，带有红色和蓝色的装饰条纹。列车停在或行驶在铁轨上。\n2. **铁轨**：有多条平行的铁轨，分布在画面的前景和中景，显得非常规整。\n3. **工业设施**：背景左侧有一个黄色的工业起重机结构，可能用于装卸货物。\n4. **建筑物**：背景中有几栋建筑物，包括一个标有“Sparkitts”的红色广告牌的建筑，以及一些其他商业或办公建筑。\n5. **车辆**：在建筑物前的停车场里，可以看到几辆汽车停放着。\n6. **环境**：整体环境看起来像是一个城市郊区或工业区，天气晴朗，视野开阔。\n\n### 当前标注结果\n\n根据提供的标注文件，当前标注结果如下：\n\n1. **火车（train）**：\n   - 标注位置：x1=47.7, y1=183.1, x2=528.7, y2=302.6\n   - 置信度：0.9256119132041931\n\n2. **汽车（car）**：\n   - 有四个汽车标注，分别位于：\n     - x1=587.0, y1=231.3, x2=613.2, y2=245.4（置信度：0.665382981300354）\n     - x1=617.2, y1=238.0, x2=639.6, y2=249.7（置信度：0.6285761594772339）\n     - x1=518.6, y1=221.3, x2=544.5, y2=233.5（置信度：0.5636540055274963）\n     - x1=333.5, y1=193.2, x2=354.9, y2=203.7（置信度：0.25489091873168945）\n\n### 差异分析\n\n1. **火车（train）**：\n   - **独立判断与标注对比**：标注的火车位置和大小基本准确，覆盖了整个列车。\n   - **差异**：无明显差异，标注较为合理。\n\n2. **汽车（car）**：\n   - **独立判断与标注对比**：标注的四个汽车位置大致正确，但可能存在遗漏。\n   - **差异**：\n     - **漏检**：在停车场区域，除了标注的四辆车外，还可以看到更多车辆，这些车辆未被标注。\n     - **置信度较低**：最后一个汽车标注（x1=333.5, y1=193.2, x2=354.9, y2=203.7）置信度仅为 0.25，且位置较模糊，可能是误检或标注不准确。\n\n### 人工微调建议\n\n1. **火车（train）**：\n   - **建议**：无需调整，当前标注准确。\n\n2. **汽车（car）**：\n   - **建议**：\n     - **添加漏检车辆**：在停车场区域仔细检查并添加未标注的车辆。\n     - **调整低置信度标注**：移除或重新定位置信度为 0.25 的汽车标注，确保其准确性。\n\n### JSON 输出\n\n根据上述分析，以下是需要人工复核的候选框：\n\n这个 JSON 包含了两个漏检的汽车候选框和一个置信度低的误检汽车候选框，供进一步人工复核。",
+      "image": null
+    }
+  ],
+  "description": "",
+  "chatbot_review_note": "Chatbot refreshed temporary AI_REVIEW candidates. Added: 2; removed old: 0. They are not confirmed labels and require manual verification.",
+  "chatbot_review_candidates": [
+    {
+      "action": "missing",
+      "label": "car",
+      "bbox": [
+        455,
+        215,
+        485,
+        230
+      ],
+      "confidence": 0.9,
+      "reason": "停车场内未标注的车辆"
+    },
+    {
+      "action": "missing",
+      "label": "car",
+      "bbox": [
+        490,
+        210,
+        510,
+        225
+      ],
+      "confidence": 0.9,
+      "reason": "停车场内未标注的车辆"
+    },
+    {
+      "action": "false_positive",
+      "label": "car",
+      "bbox": [
+        333.5,
+        193.2,
+        354.9,
+        203.7
+      ],
+      "confidence": 0.25,
+      "reason": "置信度低且位置模糊，可能是误检"
+    }
+  ]
+}
