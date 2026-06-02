@@ -978,6 +978,24 @@ class LabelingWidget(LabelDialog):
             tip=self.tr("Manage Shapes: Add, Delete, Remove"),
             enabled=False,
         )
+        del_label_this = action(
+            self.tr("Delete a label on this image"),
+            self.delete_label_current_image,
+            icon="delete",
+            tip=self.tr("Delete all boxes of a chosen class on the CURRENT image (for fixing false positives)"),
+        )
+        del_lowconf_this = action(
+            self.tr("Delete low-confidence boxes on this image"),
+            self.delete_lowconf_current_image,
+            icon="delete",
+            tip=self.tr("Delete boxes below a confidence threshold on the CURRENT image"),
+        )
+        del_label_dataset = action(
+            self.tr("Delete a label across folder"),
+            self.delete_label_whole_dataset,
+            icon="delete",
+            tip=self.tr("Delete all boxes of a chosen class across ALL images in the current folder"),
+        )
         copy_coordinates = action(
             self.tr("Copy Coordinates"),
             self.copy_shape_coordinates,
@@ -998,6 +1016,12 @@ class LabelingWidget(LabelDialog):
             lambda: utils.open_shape_converter(self),
             icon="convert",
             tip=self.tr("Open shape converter"),
+        )
+        publish_dataset_action = action(
+            self.tr("Publish Dataset"),
+            self.open_publish_dataset,
+            icon="convert",
+            tip=self.tr("Quality-filter, select and export to YOLO"),
         )
         open_chatbot = action(
             self.tr("ChatBot"),
@@ -1069,6 +1093,24 @@ class LabelingWidget(LabelDialog):
             "Ultralytics",
             lambda: self.start_training("ultralytics"),
             icon="ultralytics",
+        )
+        registry_action = action(
+            self.tr("Model Registry"),
+            self.open_model_registry,
+            icon="ultralytics",
+            tip=self.tr("Train a round, view versions, roll back"),
+        )
+        live_detection_action = action(
+            self.tr("Live Detection"),
+            self.open_live_detection,
+            icon="ultralytics",
+            tip=self.tr("Live camera/video/image detection with hot-swap"),
+        )
+        data_collection_action = action(
+            self.tr("Data Collection"),
+            self.open_data_collection,
+            icon="ultralytics",
+            tip=self.tr("Capture frames from video (change/detection-triggered) for the self-evolving loop"),
         )
 
         zoom = QtWidgets.QWidgetAction(self)
@@ -1962,7 +2004,7 @@ class LabelingWidget(LabelDialog):
                 None,
             ),
         )
-        utils.add_actions(self.menus.train, (ultralytics_train,))
+        utils.add_actions(self.menus.train, (ultralytics_train, registry_action, live_detection_action, data_collection_action))
         utils.add_actions(
             self.menus.tool,
             (
@@ -1978,6 +2020,10 @@ class LabelingWidget(LabelDialog):
                 shape_manager,
                 None,
                 shape_converter,
+                None,
+                del_label_this,
+                del_lowconf_this,
+                del_label_dataset,
             ),
         )
         utils.add_actions(
@@ -2033,6 +2079,8 @@ class LabelingWidget(LabelDialog):
         utils.add_actions(
             self.menus.export,
             (
+                publish_dataset_action,
+                None,
                 export_yolo_hbb_annotation,
                 export_yolo_obb_annotation,
                 export_yolo_seg_annotation,
@@ -2959,6 +3007,59 @@ class LabelingWidget(LabelDialog):
         self.load_shapes(self.canvas.shapes, update_last_label=False)
         self.actions.undo.setEnabled(self.canvas.is_shape_restorable)
         self.set_dirty()
+
+    def open_publish_dataset(self):
+        from anylabeling.views.labeling.widgets.publish_dialog import (
+            PublishDatasetDialog,
+        )
+
+        # 非模态:可与 Model Registry / Live Detection 同时打开。存成员防止被回收。
+        dlg = PublishDatasetDialog(self)
+        self._publish_dialog = dlg
+        dlg.setModal(False)
+        dlg.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose, True)
+        dlg.show()
+        dlg.raise_()
+        dlg.activateWindow()
+
+    def open_model_registry(self):
+        from anylabeling.views.labeling.widgets.registry_dialog import (
+            ModelRegistryDialog,
+        )
+
+        dlg = ModelRegistryDialog(self)
+        self._registry_dialog = dlg
+        dlg.setModal(False)
+        dlg.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose, True)
+        dlg.show()
+        dlg.raise_()
+        dlg.activateWindow()
+
+    def open_live_detection(self):
+        from anylabeling.views.labeling.widgets.live_dialog import (
+            LiveDetectionDialog,
+        )
+
+        dlg = LiveDetectionDialog(self)
+        self._live_dialog = dlg
+        dlg.setModal(False)
+        dlg.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose, True)
+        dlg.show()
+        dlg.raise_()
+        dlg.activateWindow()
+
+    def open_data_collection(self):
+        from anylabeling.views.labeling.widgets.collect_dialog import (
+            CollectDialog,
+        )
+
+        dlg = CollectDialog(self)
+        self._collect_dialog = dlg
+        dlg.setModal(False)
+        dlg.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose, True)
+        dlg.show()
+        dlg.raise_()
+        dlg.activateWindow()
 
     def get_label_file_list(self):
         label_file_list = []
@@ -6299,6 +6400,129 @@ class LabelingWidget(LabelDialog):
         if self.no_shape():
             for action in self.actions.on_shapes_present:
                 action.setEnabled(False)
+
+    # ---------------- 自动标注审查:快速删除工具 ----------------
+    def _delete_shapes_from_current(self, shapes_to_del):
+        """从当前图(canvas + label_list)删除给定 shape 列表,并标记 dirty。返回删除数。"""
+        if not shapes_to_del:
+            return 0
+        for sh in list(shapes_to_del):
+            self.canvas.delete_shape(sh)
+        self.remove_labels(shapes_to_del)
+        self.set_dirty()
+        if self.no_shape():
+            for action in self.actions.on_shapes_present:
+                action.setEnabled(False)
+        self.canvas.update()
+        return len(shapes_to_del)
+
+    def delete_label_current_image(self):
+        """删除当前图上某一类的所有框(治误检:选中误检的类,一键清掉这张图里所有该类框)。"""
+        shapes = list(self.canvas.shapes)
+        if not shapes:
+            QtWidgets.QMessageBox.information(
+                self, self.tr("提示"), self.tr("当前图没有标注"))
+            return
+        labels = sorted({s.label for s in shapes})
+        label, ok = QtWidgets.QInputDialog.getItem(
+            self, self.tr("删除某类(当前图)"),
+            self.tr("选择要从这张图删除的类:"), labels, 0, False)
+        if not ok or not label:
+            return
+        to_del = [s for s in shapes if s.label == label]
+        n = self._delete_shapes_from_current(to_del)
+        QtWidgets.QMessageBox.information(
+            self, self.tr("完成"),
+            self.tr("已从当前图删除 %d 个 '%s' 框。记得保存(Ctrl+S)。") % (n, label))
+
+    def delete_lowconf_current_image(self):
+        """删除当前图上低于某置信度的框(清理自动标注噪声)。无 score 的框(人工画的)不动。"""
+        shapes = list(self.canvas.shapes)
+        if not shapes:
+            QtWidgets.QMessageBox.information(
+                self, self.tr("提示"), self.tr("当前图没有标注"))
+            return
+        thr, ok = QtWidgets.QInputDialog.getDouble(
+            self, self.tr("删除低置信度框(当前图)"),
+            self.tr("删除置信度 < 此值的框(无置信度的人工框不受影响):"),
+            0.5, 0.0, 1.0, 2)
+        if not ok:
+            return
+        to_del = [s for s in shapes
+                  if isinstance(getattr(s, "score", None), (int, float)) and s.score < thr]
+        if not to_del:
+            QtWidgets.QMessageBox.information(
+                self, self.tr("完成"), self.tr("没有低于 %.2f 的框" % thr))
+            return
+        n = self._delete_shapes_from_current(to_del)
+        QtWidgets.QMessageBox.information(
+            self, self.tr("完成"),
+            self.tr("已从当前图删除 %d 个低置信度框。记得保存(Ctrl+S)。") % n)
+
+    def delete_label_whole_dataset(self):
+        """删除当前文件夹里所有图中某一类的所有框(批量清理整套数据集的某个误检类/不需要的类)。
+        直接改磁盘上的 .json;改完重载当前图。"""
+        import json
+
+        label_files = self.get_label_file_list()
+        if not label_files:
+            QtWidgets.QMessageBox.information(
+                self, self.tr("提示"),
+                self.tr("没找到标注文件(.json)。请先打开包含标注的文件夹。"))
+            return
+        # 汇总所有 json 里出现过的类
+        all_labels = set()
+        for lf in label_files:
+            try:
+                with open(lf, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                for sh in data.get("shapes", []):
+                    if sh.get("label"):
+                        all_labels.add(sh["label"])
+            except Exception:
+                continue
+        if not all_labels:
+            QtWidgets.QMessageBox.information(
+                self, self.tr("提示"), self.tr("标注文件里没有任何类"))
+            return
+        label, ok = QtWidgets.QInputDialog.getItem(
+            self, self.tr("跨文件夹删除某类"),
+            self.tr("选择要从【整个文件夹所有图】删除的类:"),
+            sorted(all_labels), 0, False)
+        if not ok or not label:
+            return
+        ans = QtWidgets.QMessageBox.question(
+            self, self.tr("确认"),
+            self.tr("将从 %d 个标注文件中删除所有 '%s' 框,直接修改磁盘文件,不可撤销。\n继续?")
+            % (len(label_files), label),
+            QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
+        if ans != QtWidgets.QMessageBox.StandardButton.Yes:
+            return
+        n_files = n_boxes = 0
+        for lf in label_files:
+            try:
+                with open(lf, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+            except Exception:
+                continue
+            shapes = data.get("shapes", [])
+            kept = [s for s in shapes if s.get("label") != label]
+            removed = len(shapes) - len(kept)
+            if removed > 0:
+                data["shapes"] = kept
+                try:
+                    with open(lf, "w", encoding="utf-8") as f:
+                        json.dump(data, f, ensure_ascii=False, indent=2)
+                    n_files += 1
+                    n_boxes += removed
+                except Exception:
+                    continue
+        # 重载当前图,反映磁盘变化
+        if self.filename:
+            self.load_file(self.filename)
+        QtWidgets.QMessageBox.information(
+            self, self.tr("完成"),
+            self.tr("已从 %d 个文件删除 %d 个 '%s' 框。") % (n_files, n_boxes, label))
 
     def copy_shape(self):
         self.canvas.end_move(copy=True)
