@@ -25,6 +25,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 
 from anylabeling.app_info import (
     __appname__,
+    __appdescription__,
     __version__,
     __url__,
     CLI_HELP_MSG,
@@ -287,9 +288,9 @@ def main():
 
     logger.setLevel(getattr(logging, logger_level.upper()))
     logger.info(
-        f"🚀 {gradient_text(f'X-AnyLabeling v{__version__} launched!')}"
+        f"🛰️ {gradient_text(f'{__appname__} v{__version__} · 系统在线')}"
     )
-    logger.info(f"⭐ If you like it, give us a star: {__url__}")
+    logger.info(f"🎯 {__appdescription__} · 持续侦测 / 自我演化")
     if qt_platform:
         os.environ["QT_QPA_PLATFORM"] = qt_platform
         logger.info(f"🖥️ Using Qt platform: {qt_platform}")

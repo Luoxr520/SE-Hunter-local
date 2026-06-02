@@ -48,15 +48,15 @@ class AboutDialog(QDialog):
     _bg_update_ready = pyqtSignal(dict)
 
     email_address = "cv_hub@163.com"
-    website_url = "https://github.com/CVHub520/X-AnyLabeling"
+    website_url = "https://github.com/Luoxr520/code"
     discord_url = (
         "https://discord.com/channels/1350265627142651994/1350265628832829514"
     )
     twitter_url = "https://x.com/xanylabeling"
-    github_url = "https://github.com/CVHub520/X-AnyLabeling"
-    github_issues_url = "https://github.com/CVHub520/X-AnyLabeling/issues"
+    github_url = "https://github.com/Luoxr520/code"
+    github_issues_url = "https://github.com/Luoxr520/code/issues"
     changelog_url = (
-        "https://github.com/CVHub520/X-AnyLabeling/tree/main/CHANGELOG.md"
+        "https://github.com/Luoxr520/code"
     )
 
     def __init__(self, parent=None):
@@ -222,16 +222,6 @@ class AboutDialog(QDialog):
 
         # Add stretch to push everything to the top
         layout.addStretch()
-
-        # Copyright
-        copyright_label = QLabel(
-            "基于 X-AnyLabeling (GPL-3.0) 二次开发 · © CVHub520"
-        )
-        copyright_label.setStyleSheet(
-            f"color: {t['text_secondary']}; font-size: 12px;"
-        )
-        copyright_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        layout.addWidget(copyright_label)
 
         self.move_to_center()
 

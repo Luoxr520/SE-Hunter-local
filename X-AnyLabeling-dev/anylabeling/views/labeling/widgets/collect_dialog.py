@@ -25,8 +25,6 @@ from anylabeling.views.labeling.utils.style import (
 try:
     from anylabeling.services.auto_training import collector as COL
     from anylabeling.services.auto_training.model_server import ModelServer
-    from anylabeling.services.auto_training.live_runtime import draw_boxes
-    from anylabeling.services.auto_training.box_smoother import BoxSmoother
     _IMPORT_OK, _IMPORT_ERR = True, ""
 except Exception as _e:  # noqa: BLE001
     _IMPORT_OK, _IMPORT_ERR = False, str(_e)
@@ -56,15 +54,14 @@ class CollectWorker(QThread):
             return
         o = self.opts
 
-        # 可选:加载当前模型用于检测触发 + 画框
+        # 可选:仅当勾选「检测触发」时加载当前模型,用来决定"这一帧值不值得采"
+        # (不再画框 —— 采集只需看清画面;去框更干净,也省掉平滑器开销)
         server = None
-        smoother = None
         if o["use_detection"]:
             try:
                 server = ModelServer(o["dataset"] or ".", device=o["device"],
                                      conf=o["conf"], imgsz=640)
                 server.load_current()
-                smoother = BoxSmoother(smooth=0.4)
             except Exception as ex:  # noqa: BLE001
                 self.failed.emit("检测触发需要当前模型,但加载失败: %s" % ex)
                 return
@@ -138,13 +135,9 @@ class CollectWorker(QThread):
                         last_save_t = now
                         prev_gray = cur_gray
                         self.log.emit("采集 #%d (%s) diff=%.3f" % (sess.count, reason, diff))
-                    # 预览(降频,显示小图)
+                    # 预览(降频,只显示画面,不画检测框 —— 更干净,也更省)
                     if processed % o["preview_every"] == 0:
-                        show = small.copy()
-                        if dets and smoother is not None:
-                            sb = smoother.update(dets)
-                            draw_boxes(show, sb)
-                        rgb = cv2.cvtColor(show, cv2.COLOR_BGR2RGB)
+                        rgb = cv2.cvtColor(small, cv2.COLOR_BGR2RGB)
                         h, w, ch = rgb.shape
                         qimg = QtGui.QImage(rgb.data, w, h, ch * w,
                                             QtGui.QImage.Format.Format_RGB888).copy()
@@ -209,8 +202,10 @@ class CollectDialog(QDialog):
         # 策略参数
         prow = QtWidgets.QHBoxLayout()
         self.detect_chk = QtWidgets.QCheckBox(self.tr("检测触发(用当前模型)"))
-        self.detect_chk.setToolTip(self.tr("勾上:只在当前模型检到目标时才采;并在预览里画框"))
-        self.detect_chk.setChecked(True)
+        self.detect_chk.setToolTip(self.tr(
+            "不勾(默认):纯按画面变化采帧,不加载模型,最快;"
+            "勾上:只在当前模型检到目标时才采(会加载模型推理,较慢)。预览均不画框。"))
+        self.detect_chk.setChecked(False)
         prow.addWidget(self.detect_chk)
         prow.addWidget(QtWidgets.QLabel(self.tr("变化阈值")))
         self.change_spin = QtWidgets.QDoubleSpinBox()

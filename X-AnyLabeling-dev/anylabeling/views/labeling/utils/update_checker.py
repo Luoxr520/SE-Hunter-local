@@ -1,107 +1,36 @@
-import requests
-import threading
-from packaging import version
+# -*- coding: utf-8 -*-
+"""
+update_checker.py — 自进化侦测:更新检查(已关闭对上游的联网检查)
 
+本项目是基于 X-AnyLabeling 的个人/演示用 fork,不跟随上游(CVHub520)的发布节奏。
+为避免启动时联网询问上游、并去掉那条误导性的"发现新版本 -> CVHub releases"提示,
+这里把更新检查改为本地无操作:始终返回"已是最新"。保留原有函数签名,
+调用方(app.py / about_dialog.py)无需任何改动。
+
+如果将来你给自己的仓库(Luoxr520/code)打了 GitHub Release 并想恢复联网检查,
+按文件末尾注释里的旧逻辑改回、把仓库地址换成你自己的即可。
+"""
 from anylabeling.app_info import __version__
-from anylabeling.views.labeling.logger import logger
+
+
+def _no_update():
+    """统一的"已是最新"返回值,字段与原实现保持一致,避免调用方取键报错。"""
+    return {
+        "has_update": False,
+        "current_version": __version__,
+        "latest_version": __version__,
+        "download_url": "",
+        "release_notes": "",
+        "published_at": "",
+    }
 
 
 def check_for_updates_async(callback=None, timeout=10):
-    """
-    Check for updates asynchronously without blocking the main thread
-
-    Args:
-        callback: Optional callback function to receive update info
-        timeout: Network request timeout in seconds
-    """
-
-    def update_check_thread():
-        try:
-            headers = {"Accept": "application/vnd.github.v3+json"}
-            response = requests.get(
-                "https://api.github.com/repos/CVHub520/X-AnyLabeling/releases/latest",
-                headers=headers,
-                timeout=timeout,
-            )
-
-            if response.status_code == 200:
-                data = response.json()
-                latest_version = data["tag_name"].lstrip("v")
-                current_version = __version__
-
-                if version.parse(latest_version) > version.parse(
-                    current_version
-                ):
-                    update_info = {
-                        "has_update": True,
-                        "current_version": current_version,
-                        "latest_version": latest_version,
-                        "download_url": data["html_url"],
-                        "release_notes": data.get("body", ""),
-                        "published_at": data.get("published_at", ""),
-                    }
-
-                    logger.info(
-                        "🎉 Update available: "
-                        f"{current_version} → {latest_version}\n"
-                        "🔧 To upgrade: `git pull origin main`\n"
-                        f"🌐 Or visit: {data['html_url']}"
-                    )
-
-                    if callback:
-                        callback(update_info)
-                else:
-                    # Already latest version
-                    update_info = {
-                        "has_update": False,
-                        "current_version": current_version,
-                        "latest_version": latest_version,
-                    }
-                    if callback:
-                        callback(update_info)
-
-        except Exception:
-            # Silently ignore all errors - just treat as no update available
-            pass
-
-    thread = threading.Thread(target=update_check_thread, daemon=True)
-    thread.start()
+    """已关闭联网检查:不查询上游,直接回调"已是最新"(不阻塞、不联网)。"""
+    if callback:
+        callback(_no_update())
 
 
 def check_for_updates_sync(timeout=10):
-    """
-    Check for updates synchronously and return update info
-
-    Args:
-        timeout: Network request timeout in seconds
-
-    Returns:
-        dict: Update info with has_update field, None if error
-    """
-    try:
-        headers = {"Accept": "application/vnd.github.v3+json"}
-        response = requests.get(
-            "https://api.github.com/repos/CVHub520/X-AnyLabeling/releases/latest",
-            headers=headers,
-            timeout=timeout,
-        )
-
-        if response.status_code == 200:
-            data = response.json()
-            latest_version = data["tag_name"].lstrip("v")
-            current_version = __version__
-
-            return {
-                "has_update": version.parse(latest_version)
-                > version.parse(current_version),
-                "current_version": current_version,
-                "latest_version": latest_version,
-                "download_url": data["html_url"],
-                "release_notes": data.get("body", ""),
-                "published_at": data.get("published_at", ""),
-            }
-        else:
-            return None
-
-    except Exception:
-        return None
+    """已关闭联网检查:始终返回"已是最新"。"""
+    return _no_update()
