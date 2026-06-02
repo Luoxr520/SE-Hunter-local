@@ -119,7 +119,7 @@ class AboutDialog(QDialog):
         layout.setSpacing(16)
 
         # App name and version
-        title_label = QLabel(f"<b>X-AnyLabeling</b> v{__version__}")
+        title_label = QLabel(f"<b>{__appname__}</b> v{__version__}")
         title_label.setStyleSheet("font-size: 16px;")
         title_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(title_label)
@@ -225,7 +225,7 @@ class AboutDialog(QDialog):
 
         # Copyright
         copyright_label = QLabel(
-            "Copyright © 2023 CVHub. All rights reserved."
+            "基于 X-AnyLabeling (GPL-3.0) 二次开发 · © CVHub520"
         )
         copyright_label.setStyleSheet(
             f"color: {t['text_secondary']}; font-size: 12px;"

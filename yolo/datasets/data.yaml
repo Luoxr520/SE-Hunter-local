@@ -1,5 +1,5 @@
-# 由 publish_dataset.py 生成 —— 类别表与 val 已冻结/只追加
-path: D:\code\yolo\datasets
+# 由 clean_review_classes.py 重建 — UTF-8
+path: D:/code/yolo/datasets
 train: images/train
 val: images/val
 names:

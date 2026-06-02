@@ -37,13 +37,36 @@ def scan_all_images(folder_path):
         return []
 
 
+# 品牌资源名:这些优先从文件系统读(便于更换 logo 而无需重新编译 qrc 资源)。
+# 其它图标一律走编译进 resources.py 的 :/ 资源,行为不变。
+_BRAND_ICONS = {"icon", "logo"}
+
+
+def _resource_path(icon, ext="png"):
+    """品牌图标(icon/logo)优先用 anylabeling/resources/images 下的文件;
+    找不到则回退到编译进 resources.py 的 :/ 资源。非品牌图标直接用 :/ 资源。"""
+    if icon in _BRAND_ICONS:
+        try:
+            import anylabeling
+
+            disk = osp.join(
+                osp.dirname(osp.abspath(anylabeling.__file__)),
+                "resources", "images", f"{icon}.{ext}",
+            )
+            if osp.exists(disk):
+                return disk
+        except Exception:
+            pass
+    return f":/images/images/{icon}.{ext}"
+
+
 def new_icon(icon, ext="png"):
-    return QtGui.QIcon(osp.join(f":/images/images/{icon}.{ext}"))
+    return QtGui.QIcon(_resource_path(icon, ext))
 
 
 def new_icon_path(icon, ext="png"):
     """Returns the resource path string for an icon."""
-    return f":/images/images/{icon}.{ext}"
+    return _resource_path(icon, ext)
 
 
 def new_button(text, icon=None, slot=None):

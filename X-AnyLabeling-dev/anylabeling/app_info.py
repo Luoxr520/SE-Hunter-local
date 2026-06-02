@@ -1,7 +1,7 @@
-__appname__ = "X-AnyLabeling"
-__appdescription__ = "Advanced Auto Labeling Solution with Added Features"
+__appname__ = "自进化侦测"
+__appdescription__ = "Self-Evolving Detection · 自进化目标检测系统"
 __version__ = "4.0.0-beta.5"
-__url__ = "https://github.com/CVHub520/X-AnyLabeling"
+__url__ = "https://github.com/Luoxr520/code"
 
 CLI_HELP_MSG = """
     Usage: xanylabeling [COMMAND] [OPTIONS]

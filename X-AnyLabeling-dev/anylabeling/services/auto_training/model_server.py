@@ -43,6 +43,10 @@ except ImportError:
 # 标准化的一个检测框:像素坐标 xyxy + 置信度 + 类别 id + 类别名
 Det = namedtuple("Det", "x1 y1 x2 y2 conf cls label")
 
+# 跟踪框:在 Det 基础上多一个稳定的 track id(tid)。ByteTrack 跨帧维持的同一目标 tid 不变。
+# tid 可能为 None(ByteTrack 尚未确认该目标时),画框时按是否有 tid 区分显示。
+TrackDet = namedtuple("TrackDet", "tid x1 y1 x2 y2 conf cls label")
+
 
 def resolve_dataset(arg):
     """显式 --dataset 优先;否则读 X-AnyLabeling 持久化的发布输出目录。"""
@@ -85,9 +89,30 @@ def to_detections(result, names=None):
     return out
 
 
+def to_tracks(result, names=None):
+    """把 ultralytics track() 单帧结果转成 [TrackDet,...]。
+    读 boxes.id 作为稳定 track id;id 为 None(未确认/无跟踪)时该框 tid=None。"""
+    names = names or {}
+    out = []
+    boxes = getattr(result, "boxes", None)
+    if boxes is None:
+        return out
+    xyxy = _arr(boxes.xyxy)
+    conf = _arr(boxes.conf)
+    cls = _arr(boxes.cls)
+    ids = getattr(boxes, "id", None)
+    ids = _arr(ids) if ids is not None else None
+    for i in range(len(xyxy)):
+        x1, y1, x2, y2 = (float(v) for v in xyxy[i][:4])
+        k = int(cls[i])
+        tid = int(ids[i]) if (ids is not None and i < len(ids)) else None
+        out.append(TrackDet(tid, x1, y1, x2, y2, float(conf[i]), k, names.get(k, str(k))))
+    return out
+
+
 class ModelServer:
     def __init__(self, dataset_dir, device=None, loader=None,
-                 conf=0.25, iou=0.45, imgsz=640, warmup=True):
+                 conf=0.25, iou=0.45, imgsz=640, warmup=True, tracker="bytetrack.yaml"):
         self.dataset_dir = osp.abspath(dataset_dir)
         self.device = device
         self._loader = loader or self._default_loader
@@ -95,6 +120,7 @@ class ModelServer:
         self.iou = iou
         self.imgsz = imgsz
         self.warmup = warmup
+        self.tracker = tracker        # ByteTrack 配置(ultralytics 自带 bytetrack.yaml / botsort.yaml)
 
         self._lock = threading.Lock()
         self._active = None          # {"model","id","ckpt","metrics"}
@@ -206,6 +232,23 @@ class ModelServer:
         r = res[0]
         names = getattr(model, "names", None) or getattr(r, "names", {}) or {}
         return to_detections(r, names)
+
+    def track(self, frame):
+        """对一帧做带 ByteTrack 的跟踪推理,返回带稳定 tid 的 [TrackDet,...]。
+
+        必须按视频顺序逐帧调用(persist=True 跨帧维持轨迹);跳帧只会让 ByteTrack
+        看到更低帧率的流,卡尔曼运动预测能扛。热替换换了模型对象后跟踪自然从头开始。
+        注意:实时循环里只调 track()(不混用 predict),否则 ultralytics 可能重置跟踪器。
+        """
+        model = self.get_model()
+        if model is None:
+            return []
+        res = model.track(frame, device=self.device, imgsz=self.imgsz,
+                          conf=self.conf, iou=self.iou, persist=True,
+                          tracker=self.tracker, verbose=False)
+        r = res[0]
+        names = getattr(model, "names", None) or getattr(r, "names", {}) or {}
+        return to_tracks(r, names)
 
     def info(self):
         with self._lock:

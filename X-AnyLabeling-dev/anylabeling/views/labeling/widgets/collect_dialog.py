@@ -283,7 +283,7 @@ class CollectDialog(QDialog):
         self.stop_btn.setEnabled(False)
         self.autolabel_btn = QtWidgets.QPushButton(self.tr("把刚采集的送去自动标注"))
         self.autolabel_btn.setEnabled(False)
-        self.autolabel_btn.setToolTip(self.tr("用当前模型给刚采集会话的图预标注成 X-AnyLabeling 的 json"))
+        self.autolabel_btn.setToolTip(self.tr("用当前模型给刚采集会话的图预标注成本程序的标注 json"))
         self.status = QtWidgets.QLabel("")
         bot.addWidget(self.start_btn)
         bot.addWidget(self.stop_btn)
@@ -459,7 +459,7 @@ class CollectDialog(QDialog):
             box = QtWidgets.QMessageBox(self)
             box.setWindowTitle(self.tr("自动标注完成"))
             box.setText(
-                self.tr("已为 %d 张图生成标注(%d 框)。\n\n要在 X-AnyLabeling 打开该文件夹筛选/修正吗?\n%s")
+                self.tr("已为 %d 张图生成标注(%d 框)。\n\n要在主界面打开该文件夹筛选/修正吗?\n%s")
                 % (n_img, n_box, d))
             b_now = box.addButton(self.tr("立即打开(并关闭本窗口)"), QtWidgets.QMessageBox.ButtonRole.AcceptRole)
             box.addButton(self.tr("关闭本窗口后打开"), QtWidgets.QMessageBox.ButtonRole.AcceptRole)

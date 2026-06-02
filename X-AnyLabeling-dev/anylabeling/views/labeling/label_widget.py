@@ -1967,6 +1967,7 @@ class LabelingWidget(LabelDialog):
             export=self.menu(self.tr("Export")),
             tool=self.menu(self.tr("Tool")),
             train=self.menu(self.tr("Train")),
+            self_evolve=self.menu(self.tr("自进化")),
             help=self.menu(self.tr("Help")),
             recent_files=QtWidgets.QMenu(self.tr("Open Recent")),
             label_list=label_menu,
@@ -2004,7 +2005,18 @@ class LabelingWidget(LabelDialog):
                 None,
             ),
         )
-        utils.add_actions(self.menus.train, (ultralytics_train, registry_action, live_detection_action, data_collection_action))
+        utils.add_actions(self.menus.train, (ultralytics_train,))
+        # 自进化闭环:按流水线顺序聚合本项目的核心功能(采集→发布→训练→实时检测)
+        utils.add_actions(
+            self.menus.self_evolve,
+            (
+                data_collection_action,   # ① 采集:从视频流按变化/检测触发采集新数据
+                publish_dataset_action,   # ② 发布:质量分诊 + 选择性发布为 YOLO 数据集
+                None,
+                registry_action,          # ③ 训练:训练-评测-注册-上线/回退
+                live_detection_action,    # ④ 实时检测:ByteTrack 跟踪 + 模型热替换
+            ),
+        )
         utils.add_actions(
             self.menus.tool,
             (

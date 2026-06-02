@@ -120,33 +120,6 @@
       "kie_linking": []
     },
     {
-      "label": "AI_REVIEW_missing_person",
-      "score": 0.9,
-      "points": [
-        [
-          260.0,
-          190.0
-        ],
-        [
-          290.0,
-          190.0
-        ],
-        [
-          290.0,
-          230.0
-        ],
-        [
-          260.0,
-          230.0
-        ]
-      ],
-      "group_id": null,
-      "description": "",
-      "difficult": true,
-      "shape_type": "rectangle",
-      "flags": {},
-      "attributes": {},
-      "kie_linking": [],
       "chatbot_review": {
         "source": "chatbot_review",
         "status": "unconfirmed",
@@ -154,11 +127,46 @@
         "suggested_label": "person",
         "reason": "左侧大象上的第二个人",
         "candidate_index": 1
-      }
+      },
+      "label": "person",
+      "score": null,
+      "points": [
+        [
+          260.0,
+          190.0
+        ],
+        [
+          290.0,
+          190.0
+        ],
+        [
+          290.0,
+          230.0
+        ],
+        [
+          260.0,
+          230.0
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {},
+      "kie_linking": []
     },
     {
-      "label": "AI_REVIEW_missing_person",
-      "score": 0.9,
+      "chatbot_review": {
+        "source": "chatbot_review",
+        "status": "unconfirmed",
+        "action": "missing",
+        "suggested_label": "person",
+        "reason": "右侧大象上的第二个人",
+        "candidate_index": 2
+      },
+      "label": "person",
+      "score": null,
       "points": [
         [
           395.0,
@@ -179,19 +187,11 @@
       ],
       "group_id": null,
       "description": "",
-      "difficult": true,
+      "difficult": false,
       "shape_type": "rectangle",
       "flags": {},
       "attributes": {},
-      "kie_linking": [],
-      "chatbot_review": {
-        "source": "chatbot_review",
-        "status": "unconfirmed",
-        "action": "missing",
-        "suggested_label": "person",
-        "reason": "右侧大象上的第二个人",
-        "candidate_index": 2
-      }
+      "kie_linking": []
     }
   ],
   "imagePath": "000000000061.jpg",
