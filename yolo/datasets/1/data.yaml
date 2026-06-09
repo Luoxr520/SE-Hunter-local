@@ -1,0 +1,8 @@
+# 由 publish_dataset.py 生成 —— 类别表与 val 已冻结/只追加
+path: D:\code\yolo\datasets\1
+train: images/train
+val: images/val
+names:
+  0: 友方人员
+  1: 可疑设备
+  2: 树木

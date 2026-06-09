@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SE-HUNTER · 复杂密林发射井区域可疑目标智能检测系统</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&display=swap');
+  :root{
+    --bg:#04070a;--bg2:#070d10;--panel:#0a1410;--panel-line:#13261c;--grid:#0e2117;
+    --green:#36ff7e;--green-dim:#1a8f47;--green-deep:#0c3b22;--amber:#ffcf4a;
+    --alert:#ff3b30;--txt:#bfe9cf;--txt-dim:#5f8a72;
+    --mono:'Share Tech Mono','Consolas','SF Mono','DejaVu Sans Mono',monospace;
+    --disp:'Orbitron','Consolas','Segoe UI',Tahoma,sans-serif;
+    --ui:'Rajdhani','Segoe UI',Tahoma,'Microsoft YaHei',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{background:radial-gradient(120% 80% at 50% -10%, #0a1a12 0%, transparent 60%),var(--bg);
+    color:var(--txt);font-family:var(--ui);overflow:hidden;-webkit-font-smoothing:antialiased}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;
+    background:repeating-linear-gradient(0deg,rgba(0,0,0,0) 0 2px,rgba(0,0,0,.16) 2px 3px);mix-blend-mode:multiply;opacity:.5}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;
+    background:radial-gradient(130% 130% at 50% 50%,transparent 55%,rgba(0,0,0,.7) 100%)}
+
+  .topbar{height:62px;display:flex;align-items:center;gap:18px;padding:0 22px;
+    border-bottom:1px solid var(--panel-line);
+    background:linear-gradient(180deg,rgba(12,28,18,.9),rgba(6,12,9,.6));position:relative;z-index:5}
+  .brand{display:flex;align-items:center;gap:14px;min-width:0}
+  .logo{width:38px;height:38px;flex:none;border:1.5px solid var(--green);border-radius:7px;display:grid;place-items:center;
+    box-shadow:0 0 14px rgba(54,255,126,.45),inset 0 0 10px rgba(54,255,126,.2);animation:logopulse 3s ease-in-out infinite}
+  .logo svg{width:22px;height:22px}
+  @keyframes logopulse{50%{box-shadow:0 0 22px rgba(54,255,126,.8),inset 0 0 14px rgba(54,255,126,.35)}}
+  .brand-txt h1{font-family:var(--disp);font-weight:900;font-size:20px;letter-spacing:3px;color:#eafff1;line-height:1;text-shadow:0 0 12px rgba(54,255,126,.5)}
+  .brand-txt h1 b{color:var(--green)}
+  .brand-txt p{font-family:var(--mono);font-size:10.5px;letter-spacing:1.5px;color:var(--txt-dim);margin-top:5px;white-space:nowrap}
+  .top-spacer{flex:1}
+  .top-stat{font-family:var(--mono);font-size:11px;color:var(--txt-dim);display:flex;flex-direction:column;gap:3px;align-items:flex-end;padding:0 16px;border-left:1px solid var(--panel-line);height:36px;justify-content:center}
+  .top-stat b{color:var(--green);font-size:15px;letter-spacing:1px}
+  .clock b{color:#eafff1}
+  .sysok{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:1px;color:var(--green)}
+  .sysok.off{color:var(--alert)}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:blink 1.4s steps(2) infinite}
+  .sysok.off .dot{background:var(--alert);box-shadow:0 0 10px var(--alert)}
+  @keyframes blink{50%{opacity:.25}}
+
+  .stage{height:calc(100vh - 62px - 26px);display:grid;grid-template-columns:300px 1fr 320px;gap:1px;background:var(--panel-line)}
+  .col{background:var(--bg2);overflow:hidden;display:flex;flex-direction:column}
+  .panel-h{font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--green);padding:11px 16px;
+    border-bottom:1px solid var(--panel-line);display:flex;align-items:center;gap:9px;background:rgba(12,28,18,.4);text-transform:uppercase;flex:none}
+  .panel-h .bar{width:3px;height:13px;background:var(--green);box-shadow:0 0 8px var(--green)}
+  .panel-h .idx{margin-left:auto;color:var(--txt-dim);font-size:10px}
+
+  .scroll{overflow-y:auto;flex:1}
+  .scroll::-webkit-scrollbar{width:5px}.scroll::-webkit-scrollbar-thumb{background:var(--green-deep)}
+  .block{padding:15px 16px;border-bottom:1px solid var(--panel-line)}
+  .block-t{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;color:var(--txt-dim);margin-bottom:11px;text-transform:uppercase}
+  .gauge{margin-bottom:13px}.gauge:last-child{margin-bottom:0}
+  .gauge-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px}
+  .gauge-top span{font-family:var(--ui);font-size:13px;font-weight:600;color:var(--txt)}
+  .gauge-top b{font-family:var(--mono);font-size:13px;color:var(--green)}
+  .gbar{height:6px;background:#0a1a10;border:1px solid var(--green-deep);position:relative;overflow:hidden}
+  .gfill{height:100%;background:linear-gradient(90deg,var(--green-dim),var(--green));box-shadow:0 0 9px var(--green);transition:width .4s ease}
+  .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .mini{background:var(--panel);border:1px solid var(--panel-line);padding:10px;position:relative}
+  .mini::before{content:"";position:absolute;top:0;left:0;width:8px;height:8px;border-top:1.5px solid var(--green);border-left:1.5px solid var(--green)}
+  .mini-l{font-family:var(--mono);font-size:9px;color:var(--txt-dim);letter-spacing:1px;text-transform:uppercase}
+  .mini-v{font-family:'Consolas','DejaVu Sans Mono','Orbitron',var(--mono);font-weight:700;font-size:22px;color:#eafff1;margin-top:4px;line-height:1;letter-spacing:1px;text-shadow:0 0 10px rgba(54,255,126,.4)}
+  .mini-v small{font-size:11px;color:var(--green);font-family:var(--mono)}
+  .model-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px dashed var(--panel-line);font-family:var(--mono);font-size:11.5px}
+  .model-row:last-child{border:none}
+  .model-row span{color:var(--txt-dim);letter-spacing:.5px}
+  .model-row b{color:var(--txt)}.model-row b.hi{color:var(--green)}
+  .badge{font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid var(--green);color:var(--green);letter-spacing:1px}
+
+  .radar{aspect-ratio:1;max-width:230px;margin:4px auto 0;position:relative;border-radius:50%;border:1px solid var(--green-deep);background:radial-gradient(circle,rgba(54,255,126,.05),transparent 70%)}
+  .radar::before,.radar::after{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid var(--green-deep)}
+  .radar::before{inset:22%}.radar::after{inset:44%}
+  .sweep{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,rgba(54,255,126,.35),transparent 40%);animation:sweep 3.2s linear infinite;mix-blend-mode:screen}
+  @keyframes sweep{to{transform:rotate(360deg)}}
+  .blip{position:absolute;width:7px;height:7px;border-radius:50%;transform:translate(-50%,-50%);animation:blipf 2s ease-in-out infinite}
+  @keyframes blipf{50%{opacity:.3}}
+
+  .center{position:relative;background:#020403;display:flex;flex-direction:column}
+  .view-h{display:flex;align-items:center;gap:14px;padding:10px 16px;border-bottom:1px solid var(--panel-line);background:rgba(12,28,18,.4);flex:none}
+  .rec{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:12px;letter-spacing:2px;color:var(--alert)}
+  .rec .d{width:10px;height:10px;border-radius:50%;background:var(--alert);box-shadow:0 0 10px var(--alert);animation:blink 1s steps(2) infinite}
+  .view-h .meta{font-family:var(--mono);font-size:11px;color:var(--txt-dim);letter-spacing:1px}
+  .view-h .meta b{color:var(--green)}
+  .view-h .right{margin-left:auto;display:flex;gap:18px}
+
+  .viewport{flex:1;position:relative;overflow:hidden;background:#040806;display:grid;place-items:center}
+  .feed{max-width:100%;max-height:100%;display:block;filter:saturate(1.05) contrast(1.05)}
+  .feed-wrap{position:relative;line-height:0}
+  .nv{position:absolute;inset:0;background:linear-gradient(rgba(54,255,126,.06),rgba(20,120,60,.10));mix-blend-mode:overlay;pointer-events:none}
+  .scanline{position:absolute;left:0;right:0;height:80px;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(54,255,126,.16) 50%,transparent);box-shadow:0 0 30px rgba(54,255,126,.22);animation:scanmove 3.6s linear infinite}
+  @keyframes scanmove{0%{top:-80px}100%{top:100%}}
+  .hud{position:absolute;inset:0;pointer-events:none}
+  .corner{position:absolute;width:34px;height:34px;border:2px solid var(--green);opacity:.8;filter:drop-shadow(0 0 5px var(--green))}
+  .corner.tl{top:14px;left:14px;border-right:0;border-bottom:0}.corner.tr{top:14px;right:14px;border-left:0;border-bottom:0}
+  .corner.bl{bottom:14px;left:14px;border-right:0;border-top:0}.corner.br{bottom:14px;right:14px;border-left:0;border-top:0}
+  .waiting{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--mono);font-size:13px;letter-spacing:2px;color:var(--txt-dim);text-align:center}
+  .waiting .sp{display:inline-block;animation:blink 1s steps(2) infinite}
+
+  .view-f{flex:none;display:flex;align-items:center;gap:22px;padding:9px 16px;border-top:1px solid var(--panel-line);background:rgba(12,28,18,.4);font-family:var(--mono);font-size:11px;color:var(--txt-dim);letter-spacing:1px}
+  .view-f b{color:var(--green)}
+  .view-f .alertmsg{margin-left:auto;color:var(--alert);display:flex;align-items:center;gap:8px;font-weight:bold;letter-spacing:1.5px;display:none}
+  .view-f .alertmsg .d{width:8px;height:8px;background:var(--alert);border-radius:50%;box-shadow:0 0 8px var(--alert);animation:blink .8s steps(2) infinite}
+
+  .target{padding:13px 16px;border-bottom:1px solid var(--panel-line);position:relative;transition:background .2s;animation:slidein .4s ease both}
+  @keyframes slidein{from{opacity:0;transform:translateX(16px)}}
+  .target:hover{background:rgba(54,255,126,.05)}
+  .target.alert{background:linear-gradient(90deg,rgba(255,59,48,.12),transparent)}
+  .target.alert::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--alert);box-shadow:0 0 10px var(--alert)}
+  .target.g::before,.target.n::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green);box-shadow:0 0 8px var(--green)}
+  .target.n::before{background:var(--green-dim);box-shadow:0 0 6px var(--green-dim)}
+  .t-top{display:flex;align-items:center;gap:9px;margin-bottom:9px}
+  .t-id{font-family:var(--mono);font-size:11px;color:var(--txt-dim)}
+  .t-name{font-family:var(--ui);font-weight:700;font-size:14.5px;letter-spacing:.5px}
+  .t-name.alert{color:var(--alert)}.t-name.g{color:var(--green)}.t-name.n{color:var(--txt)}
+  .t-conf{margin-left:auto;font-family:'Consolas','DejaVu Sans Mono','Orbitron',var(--mono);font-weight:700;font-size:15px}
+  .t-conf.alert{color:var(--alert)}.t-conf.g{color:var(--green)}.t-conf.n{color:var(--txt-dim)}
+  .t-bar{height:4px;background:#0a1a10;border:1px solid var(--green-deep);overflow:hidden;margin-bottom:8px}
+  .t-bar i{display:block;height:100%;background:var(--green);box-shadow:0 0 7px var(--green)}
+  .t-bar.alert i{background:var(--alert);box-shadow:0 0 7px var(--alert)}
+  .t-meta{display:flex;gap:14px;font-family:var(--mono);font-size:10px;color:var(--txt-dim);letter-spacing:.5px}
+  .t-meta span b{color:var(--txt)}
+  .empty{padding:30px 16px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--txt-dim);letter-spacing:1px}
+
+  .ticker{height:26px;border-top:1px solid var(--panel-line);background:#060c09;display:flex;align-items:center;overflow:hidden;position:relative;z-index:5}
+  .ticker .lab{flex:none;font-family:var(--mono);font-size:10px;letter-spacing:2px;color:#03130a;background:var(--green);padding:0 12px;height:100%;display:flex;align-items:center}
+  .ticker-track{white-space:nowrap;font-family:var(--mono);font-size:11px;color:var(--txt-dim);letter-spacing:1px;animation:tick 30s linear infinite;padding-left:100%}
+  .ticker-track b{color:var(--green)}.ticker-track .a{color:var(--alert)}
+  @keyframes tick{to{transform:translateX(-100%)}}
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#36ff7e" stroke-width="1.6">
+        <path d="M12 2 L4 6 v6 c0 5 8 8 8 8 s8-3 8-8 V6 Z"/><circle cx="12" cy="11" r="3"/><path d="M12 8v-2M12 16v-2M9 11H7M17 11h-2"/></svg></div>
+      <div class="brand-txt"><h1>SE&#8209;<b>HUNTER</b></h1>
+        <p>复杂密林发射井区域可疑目标智能检测系统 · 基于改进 YOLO</p></div>
+    </div>
+    <div class="top-spacer"></div>
+    <div class="sysok" id="sysok"><span class="dot"></span><span id="sysok-t">CONNECTING…</span></div>
+    <div class="top-stat"><span>THREAT LEVEL</span><b id="threat">—</b></div>
+    <div class="top-stat clock"><span>MISSION TIME</span><b id="clock">00:00:00</b></div>
+  </div>
+
+  <div class="stage">
+    <!-- 左栏 -->
+    <div class="col left">
+      <div class="panel-h"><span class="bar"></span>SYSTEM STATUS<span class="idx">[ L-01 ]</span></div>
+      <div class="scroll">
+        <div class="block">
+          <div class="block-t">// 推理性能</div>
+          <div class="gauge"><div class="gauge-top"><span>推理帧率 FPS</span><b id="g-fps">—</b></div><div class="gbar"><div class="gfill" id="f-fps" style="width:0%"></div></div></div>
+          <div class="gauge"><div class="gauge-top"><span>当前目标数</span><b id="g-det">—</b></div><div class="gbar"><div class="gfill" id="f-det" style="width:0%"></div></div></div>
+          <div class="gauge"><div class="gauge-top"><span>活跃轨迹</span><b id="g-trk">—</b></div><div class="gbar"><div class="gfill" id="f-trk" style="width:0%"></div></div></div>
+        </div>
+        <div class="block">
+          <div class="block-t">// 检测统计</div>
+          <div class="mini-grid">
+            <div class="mini"><div class="mini-l">当前目标</div><div class="mini-v" id="m-det">0</div></div>
+            <div class="mini"><div class="mini-l">活跃轨迹</div><div class="mini-v" id="m-trk">0</div></div>
+            <div class="mini"><div class="mini-l">告警目标</div><div class="mini-v" id="m-alert" style="color:#ff6b60">0</div></div>
+            <div class="mini"><div class="mini-l">已处理帧</div><div class="mini-v" id="m-frame">0</div></div>
+          </div>
+        </div>
+        <div class="block">
+          <div class="block-t">// 在线模型</div>
+          <div class="model-row"><span>VERSION</span><b class="hi" id="md-id">—</b></div>
+          <div class="model-row"><span>mAP50-95</span><b class="hi" id="md-map">—</b></div>
+          <div class="model-row"><span>mAP50</span><b id="md-map50">—</b></div>
+          <div class="model-row"><span>热替换</span><b id="md-swaps">0</b></div>
+          <div class="model-row"><span>STATUS</span><span class="badge" id="md-state">ONLINE</span></div>
+        </div>
+        <div class="block" style="border-bottom:none">
+          <div class="block-t">// 区域雷达扫描</div>
+          <div class="radar" id="radar"><div class="sweep"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 中栏 -->
+    <div class="col center">
+      <div class="view-h">
+        <div class="rec"><span class="d"></span>REC ● LIVE</div>
+        <div class="meta">SRC <b id="vh-src">REAL FEED</b></div>
+        <div class="right">
+          <div class="meta">FPS <b id="vh-fps">—</b></div>
+          <div class="meta">MODEL <b id="vh-model">—</b></div>
+          <div class="meta">SECTOR <b>K&#8209;7</b></div>
+        </div>
+      </div>
+      <div class="viewport" id="viewport">
+        <div class="feed-wrap">
+          <img class="feed" id="feed" alt=""/>
+          <div class="nv"></div>
+          <div class="scanline"></div>
+          <div class="hud">
+            <div class="corner tl"></div><div class="corner tr"></div>
+            <div class="corner bl"></div><div class="corner br"></div>
+          </div>
+        </div>
+        <div class="waiting" id="waiting">● 正在连接实时检测流 <span class="sp">…</span><br><span style="font-size:11px">SE-HUNTER ENGINE STARTING</span></div>
+      </div>
+      <div class="view-f">
+        <div>MODE <b>TRACK+DETECT</b></div>
+        <div>SWAPS <b id="vf-swaps">0</b></div>
+        <div>ENGINE <b id="vf-engine">—</b></div>
+        <div class="alertmsg" id="vf-alert"><span class="d"></span>POSSIBLE HOSTILE — SECTOR K-7</div>
+      </div>
+    </div>
+
+    <!-- 右栏 -->
+    <div class="col right">
+      <div class="panel-h"><span class="bar"></span>TARGET TRACKS<span class="idx" id="r-count">[ 00 ]</span></div>
+      <div class="scroll" id="targetlist"><div class="empty">// 等待检测数据…</div></div>
+    </div>
+  </div>
+
+  <div class="ticker">
+    <div class="lab">SYS LOG</div>
+    <div class="ticker-track" id="ticker">SE-HUNTER 实时检测系统 · 连接中…</div>
+  </div>
+
+<script>
+  // 任务计时
+  const t0=Date.now();
+  setInterval(()=>{let s=Math.floor((Date.now()-t0)/1000);
+    document.getElementById('clock').textContent=
+      [Math.floor(s/3600),Math.floor(s%3600/60),s%60].map(v=>String(v).padStart(2,'0')).join(':');},1000);
+
+  // 视频流:直接用 MJPEG;断流自动重连
+  const feed=document.getElementById('feed');
+  function connectFeed(){feed.src='/stream.mjpg?t='+Date.now();}
+  feed.onload=()=>{document.getElementById('waiting').style.display='none';};
+  feed.onerror=()=>{setTimeout(connectFeed,1500);};
+  connectFeed();
+
+  const KIND={alert:'alert',ok:'g',neutral:'n'};
+  const KIND_TXT={alert:'HOSTILE',ok:'FRIENDLY',neutral:'TERRAIN'};
+
+  // 仅当值变化时才写 DOM,避免每 0.5s 无意义重绘导致的"抽搐/闪烁"
+  function setTxt(id,val){const el=document.getElementById(id);const s=String(val);if(el&&el.textContent!==s)el.textContent=s;}
+  function setW(id,pct){const el=document.getElementById(id);const s=Math.max(0,Math.min(100,pct))+'%';if(el&&el.style.width!==s)el.style.width=s;}
+  function setHTML(id,html){const el=document.getElementById(id);if(el&&el.innerHTML!==html)el.innerHTML=html;}
+
+  function setThreat(alerts){
+    const el=document.getElementById('threat');
+    if(alerts>=2){el.textContent='HIGH';el.style.color='#ff3b30';}
+    else if(alerts===1){el.textContent='ELEVATED';el.style.color='#ffcf4a';}
+    else{el.textContent='GUARDED';el.style.color='#36ff7e';}
+  }
+
+  function renderRadar(targets){
+    const r=document.getElementById('radar');
+    r.querySelectorAll('.blip').forEach(e=>e.remove());
+    targets.slice(0,8).forEach(t=>{
+      // 用目标框中心映射到雷达(粗略,纯视觉)
+      const b=document.createElement('div');b.className='blip';
+      const cx=((t.x1+t.x2)/2)%100, cy=((t.y1+t.y2)/2)%100;
+      b.style.left=(20+cx*0.6)+'%';b.style.top=(20+cy*0.6)+'%';
+      const c=t.kind==='alert'?'#ff3b30':'#36ff7e';
+      b.style.background=c;b.style.boxShadow='0 0 10px '+c;
+      r.appendChild(b);
+    });
+  }
+
+  let lastErr='';
+  async function poll(){
+    try{
+      const res=await fetch('/status.json',{cache:'no-store'});
+      const s=await res.json();
+
+      // 系统在线状态
+      const sysok=document.getElementById('sysok');
+      if(s.running){sysok.classList.remove('off');setTxt('sysok-t','SYSTEM ONLINE');}
+      else{sysok.classList.add('off');setTxt('sysok-t',s.error?'ENGINE ERROR':'STARTING…');}
+      setTxt('vf-engine',s.running?'RUNNING':'IDLE');
+
+      // 性能
+      const fps=s.fps||0;
+      setTxt('g-fps',fps.toFixed(1));
+      setW('f-fps',fps/60*100);
+      setTxt('vh-fps',fps.toFixed(1));
+      setTxt('g-det',s.dets||0);
+      setW('f-det',(s.dets||0)*12);
+      setTxt('g-trk',s.tracks||0);
+      setW('f-trk',(s.tracks||0)*12);
+
+      // 统计
+      const targets=s.targets||[];
+      const alerts=targets.filter(t=>t.kind==='alert').length;
+      setTxt('m-det',s.dets||0);
+      setTxt('m-trk',s.tracks||0);
+      setTxt('m-alert',alerts);
+      setTxt('m-frame',s.frame||0);
+      setThreat(alerts);
+
+      // 模型
+      const md=s.model||{};
+      setTxt('md-id',md.id||'—');
+      setTxt('vh-model',md.id||'—');
+      setTxt('md-map',(typeof md.map5095==='number')?md.map5095.toFixed(3):'—');
+      setTxt('md-map50',(typeof md.map50==='number')?md.map50.toFixed(3):'—');
+      setTxt('md-swaps',md.swaps||0);
+      setTxt('vf-swaps',md.swaps||0);
+
+      // 告警条
+      const alertEl=document.getElementById('vf-alert');
+      const disp=alerts>0?'flex':'none';
+      if(alertEl.style.display!==disp)alertEl.style.display=disp;
+
+      // 目标列表(仅内容变化才重绘)
+      setTxt('r-count','[ '+String(targets.length).padStart(2,'0')+' ]');
+      if(targets.length===0){
+        setHTML('targetlist','<div class="empty">// NO ACTIVE TARGETS<br>SCANNING SECTOR…</div>');
+      }else{
+        const html=targets.map(t=>{
+          const k=KIND[t.kind]||'n';const conf=(t.conf||0);
+          return `<div class="target ${k}">
+            <div class="t-top">
+              <span class="t-id">#${String(t.tid==null?'—':t.tid).padStart(2,'0')}</span>
+              <span class="t-name ${k}">${t.name||'?'}</span>
+              <span class="t-conf ${k}">${conf.toFixed(2)}</span>
+            </div>
+            <div class="t-bar ${t.kind==='alert'?'alert':''}"><i style="width:${conf*100}%"></i></div>
+            <div class="t-meta">
+              <span>X <b>${t.x1}</b></span><span>Y <b>${t.y1}</b></span>
+              <span>类别 <b>${KIND_TXT[t.kind]||'?'}</b></span>
+            </div></div>`;
+        }).join('');
+        setHTML('targetlist',html);
+      }
+      renderRadar(targets);
+
+      // 滚动日志
+      const tk=document.getElementById('ticker');
+      const mapTxt=(typeof md.map5095==='number')?md.map5095.toFixed(3):'—';
+      let log=`模型 <b>${md.id||'—'}</b> 在线 · mAP50-95 <b>${mapTxt}</b> · FPS <b>${fps.toFixed(1)}</b> · 目标 <b>${s.dets||0}</b> · 轨迹 <b>${s.tracks||0}</b> · 热替换 <b>${md.swaps||0}</b>`;
+      if(alerts>0) log+=` ··· <span class="a">[ALERT]</span> 检测到 ${alerts} 个可疑目标`;
+      if(s.banner) log+=` ··· <span class="a">[SWAP]</span> ${s.banner}`;
+      if(s.error)  log+=` ··· <span class="a">[ERR]</span> ${s.error}`;
+      if(tk.innerHTML!==log+' ··· ')tk.innerHTML=log+' ··· ';
+    }catch(e){
+      document.getElementById('sysok').classList.add('off');
+      setTxt('sysok-t','DISCONNECTED');
+    }
+  }
+  poll();setInterval(poll,500);   // 2Hz 刷新状态
+</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+{
+  "version": "2.4.0",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "person",
+      "score": 0.978950560092926,
+      "points": [
+        [
+          3348.2412109375,
+          977.7713012695312
+        ],
+        [
+          3598.79248046875,
+          1753.9017333984375
+        ]
+      ],
+      "group_id": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {}
+    },
+    {
+      "label": "person",
+      "score": 0.9776156544685364,
+      "points": [
+        [
+          1364.215576171875,
+          1005.8292846679688
+        ],
+        [
+          1446.8668212890625,
+          1238.888427734375
+        ]
+      ],
+      "group_id": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {}
+    },
+    {
+      "label": "person",
+      "score": 0.9734902381896973,
+      "points": [
+        [
+          68.81080627441406,
+          951.1951904296875
+        ],
+        [
+          204.76687622070312,
+          1286.7711181640625
+        ]
+      ],
+      "group_id": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {}
+    },
+    {
+      "label": "person",
+      "score": 0.9516617655754089,
+      "points": [
+        [
+          907.4408569335938,
+          969.468994140625
+        ],
+        [
+          1076.282958984375,
+          1265.1124267578125
+        ]
+      ],
+      "group_id": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {}
+    },
+    {
+      "label": "person",
+      "score": 0.3936472237110138,
+      "points": [
+        [
+          2399.60498046875,
+          811.3251953125
+        ],
+        [
+          2615.93701171875,
+          1365.2813720703125
+        ]
+      ],
+      "group_id": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {}
+    }
+  ],
+  "imagePath": "frame_000003_225439.jpg",
+  "imageData": null,
+  "imageHeight": 2160,
+  "imageWidth": 3840,
+  "description": "auto-labeled by evo current model"
+}

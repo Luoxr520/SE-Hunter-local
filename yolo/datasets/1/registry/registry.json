@@ -1,0 +1,83 @@
+{
+  "dataset": "D:\\code\\yolo\\datasets\\1",
+  "metric": "map5095",
+  "promote_margin": 0.0,
+  "current_id": "m_0003",
+  "entries": [
+    {
+      "id": "m_0001",
+      "ts": "2026-06-07 21:06:25",
+      "ckpt": "D:\\code\\yolo\\datasets\\1\\registry\\models\\m_0001.pt",
+      "src_ckpt": "D:\\code\\yolo\\datasets\\1\\runs\\train_20260607_210324\\weights\\best.pt",
+      "parent_id": null,
+      "metrics": {
+        "map5095": 0.6366244002683537,
+        "map50": 0.9444654653900914,
+        "map75": 0.7142474835558213,
+        "precision": 0.9244802098550292,
+        "recall": 0.8725971848559286
+      },
+      "classes": [
+        "友方人员",
+        "可疑设备",
+        "树木"
+      ],
+      "n_train": null,
+      "n_val": null,
+      "epochs": 5,
+      "base": "yolo11n.pt",
+      "note": "用户662张 · ep5",
+      "status": "superseded"
+    },
+    {
+      "id": "m_0002",
+      "ts": "2026-06-07 21:09:54",
+      "ckpt": "D:\\code\\yolo\\datasets\\1\\registry\\models\\m_0002.pt",
+      "src_ckpt": "D:\\code\\yolo\\datasets\\1\\runs\\train_20260607_210914\\weights\\best.pt",
+      "parent_id": "m_0001",
+      "metrics": {
+        "map5095": 0.5867345377510101,
+        "map50": 0.930015428380945,
+        "map75": 0.6246785155635352,
+        "precision": 0.961636589662988,
+        "recall": 0.8680454711127356
+      },
+      "classes": [
+        "友方人员",
+        "可疑设备",
+        "树木"
+      ],
+      "n_train": null,
+      "n_val": null,
+      "epochs": 1,
+      "base": "D:\\code\\yolo\\datasets\\1\\registry\\models\\m_0001.pt",
+      "note": "用户662张 · ep1",
+      "status": "rejected"
+    },
+    {
+      "id": "m_0003",
+      "ts": "2026-06-07 21:11:01",
+      "ckpt": "D:\\code\\yolo\\datasets\\1\\registry\\models\\m_0003.pt",
+      "src_ckpt": "D:\\code\\yolo\\datasets\\1\\runs\\train_20260607_211002\\weights\\best.pt",
+      "parent_id": "m_0001",
+      "metrics": {
+        "map5095": 0.6892123400314539,
+        "map50": 0.9791754013063513,
+        "map75": 0.81913159732236,
+        "precision": 0.9668817324330609,
+        "recall": 0.9593218367796063
+      },
+      "classes": [
+        "友方人员",
+        "可疑设备",
+        "树木"
+      ],
+      "n_train": null,
+      "n_val": null,
+      "epochs": 2,
+      "base": "D:\\code\\yolo\\datasets\\1\\registry\\models\\m_0001.pt",
+      "note": "用户662张 · ep2",
+      "status": "promoted"
+    }
+  ]
+}

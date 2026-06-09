@@ -82,3 +82,4 @@ python -m http.server 8000
 3. 接收方先创建虚拟环境，再安装对应目录的依赖，不要直接在系统 Python 里混装。
 4. notebook 建议从项目根目录或 `scripts` 目录打开，避免旧的绝对路径兜底逻辑被触发。
 5. `X-AnyLabeling-dev` 当前是 Git 仓库，分享源码时可以保留 `.git`，只发可运行包时也可以按需压缩整个目录。
+# SE-Hunter-local

@@ -1,0 +1,106 @@
+{
+  "version": "2.4.0",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "person",
+      "score": 0.9473752379417419,
+      "points": [
+        [
+          23.834901809692383,
+          675.83740234375
+        ],
+        [
+          196.80410766601562,
+          1102.238037109375
+        ]
+      ],
+      "group_id": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {}
+    },
+    {
+      "label": "person",
+      "score": 0.9343665242195129,
+      "points": [
+        [
+          2037.0919189453125,
+          721.8129272460938
+        ],
+        [
+          2143.450927734375,
+          992.8829956054688
+        ]
+      ],
+      "group_id": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {}
+    },
+    {
+      "label": "person",
+      "score": 0.9223990440368652,
+      "points": [
+        [
+          2169.392578125,
+          693.832763671875
+        ],
+        [
+          2410.341064453125,
+          1471.2275390625
+        ]
+      ],
+      "group_id": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {}
+    },
+    {
+      "label": "person",
+      "score": 0.8937670588493347,
+      "points": [
+        [
+          1657.19091796875,
+          689.6981201171875
+        ],
+        [
+          1831.0601806640625,
+          1035.2822265625
+        ]
+      ],
+      "group_id": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {}
+    },
+    {
+      "label": "person",
+      "score": 0.597602367401123,
+      "points": [
+        [
+          1721.554443359375,
+          687.0678100585938
+        ],
+        [
+          1852.763916015625,
+          911.514404296875
+        ]
+      ],
+      "group_id": null,
+      "difficult": false,
+      "shape_type": "rectangle",
+      "flags": {},
+      "attributes": {}
+    }
+  ],
+  "imagePath": "frame_000001_225437.jpg",
+  "imageData": null,
+  "imageHeight": 2160,
+  "imageWidth": 3840,
+  "description": "auto-labeled by evo current model"
+}

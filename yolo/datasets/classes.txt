@@ -34,3 +34,5 @@ spoon
 train
 truck
 vase
+可疑设备
+树木
